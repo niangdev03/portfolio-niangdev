@@ -513,6 +513,7 @@
       min-height: 320px;
     }
 
+    /* Desktop : inverse l'ordre visuel sur les cartes paires */
     .project-card:nth-child(even) .project-card-inner {
       direction: rtl;
     }
@@ -523,10 +524,17 @@
     }
 
     .project-video-side {
-      background: var(--surface2);
       position: relative;
       overflow: hidden;
-      min-height: 300px;
+      border-radius: 12px;
+    }
+
+    .project-video {
+      width: 100%;
+      height: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      display: block;
     }
 
     .demo-placeholder {
@@ -587,7 +595,6 @@
       color: var(--accent);
     }
 
-    /* Grid pattern in video area */
     .demo-grid-bg {
       position: absolute;
       inset: 0;
@@ -595,6 +602,32 @@
         linear-gradient(rgba(0, 229, 160, 0.04) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 229, 160, 0.04) 1px, transparent 1px);
       background-size: 30px 30px;
+    }
+
+    /* --- MOBILE --- */
+    @media (max-width: 768px) {
+      .project-card-inner {
+        grid-template-columns: 1fr;
+        min-height: unset;
+      }
+
+      /* Annule le rtl inutile en colonne */
+      .project-card:nth-child(even) .project-card-inner {
+        direction: ltr;
+      }
+
+      /* Cartes paires : texte en haut, vidéo en bas */
+      .project-card:nth-child(even) .project-info {
+        order: 1;
+      }
+
+      .project-card:nth-child(even) .project-video-side {
+        order: 2;
+      }
+
+      .project-video {
+        max-height: 220px;
+      }
     }
 
     .project-info {
@@ -1069,9 +1102,9 @@
     <ul class="nav-links">
       <li><a href="#about">À propos</a></li>
       <li><a href="#projets">Projets</a></li>
-      <li><a href="#experience">Expérience</a></li>
-      <li><a href="#education">Formation</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#experience">Expériences</a></li>
+      <li><a href="#education">Formations</a></li>
+      <li><a href="#contact">Contacts</a></li>
     </ul>
   </nav>
 
@@ -1255,14 +1288,10 @@
         <div class="project-card-inner">
           <div class="project-video-side">
             <div class="demo-grid-bg"></div>
-            <div class="demo-placeholder">
-              <div class="play-btn">
-                <svg width="22" height="22" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-              <span class="demo-label">Demo — Vidéo à venir</span>
-            </div>
+            <video class="project-video" controls preload="metadata" width="22" height="22">
+              <source src="videos/delice.mov" type="video/mp4">
+              Ton navigateur ne supporte pas la vidéo.
+            </video>
             <div class="demo-badge">Demo</div>
           </div>
           <div class="project-info">
@@ -1293,14 +1322,10 @@
         <div class="project-card-inner">
           <div class="project-video-side">
             <div class="demo-grid-bg"></div>
-            <div class="demo-placeholder">
-              <div class="play-btn">
-                <svg width="22" height="22" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-              <span class="demo-label">Demo — Vidéo à venir</span>
-            </div>
+            <video class="project-video" controls preload="metadata" width="22" height="22">
+              <source src="videos/gympulse.mov" type="video/mp4">
+              Ton navigateur ne supporte pas la vidéo.
+            </video>
             <div class="demo-badge">Demo</div>
           </div>
           <div class="project-info">
@@ -1340,7 +1365,7 @@
     <div class="section-header reveal">
       <span class="section-num">03</span>
       <div class="section-line"></div>
-      <h2 class="section-title">Expérience <span class="italic">professionnelle</span></h2>
+      <h2 class="section-title">Expériences <span class="italic">professionnelles</span></h2>
     </div>
 
     <div class="timeline reveal">
